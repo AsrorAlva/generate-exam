@@ -1,0 +1,49 @@
+[
+  {
+    "type": "single",
+    "name": "Dashboard",
+    "path": "/",
+    "title": "Dashboard"
+  },
+  {
+    "type": "group",
+    "label": "Materi",
+    "children": [
+      { "name": "Daftar Materi", "path": "/materi" },
+      { "name": "Upload LKS", "path": "/materi/upload" },
+      { "name": "Atur Bab", "path": "/materi/bab" },
+      { "name": "Tambah Indikator", "path": "/materi/indikator" },
+      { "name": "Validasi Materi", "path": "/materi/validasi" }
+    ]
+  },
+  {
+    "type": "group",
+    "label": "Rencana Ujian",
+    "children": [
+      { "name": "Atur UH", "path": "/ujian/uh" },
+      { "name": "Atur UTS", "path": "/ujian/uts" },
+      { "name": "Atur UAS", "path": "/ujian/uas" },
+      { "name": "Atur Try Out", "path": "/ujian/tryout" }
+    ]
+  },
+  {
+    "type": "single",
+    "name": "Buat Soal",
+    "path": "/buat-soal"
+  },
+  {
+    "type": "single",
+    "name": "Bank Soal",
+    "path": "/bank-soal"
+  },
+  {
+    "type": "single",
+    "name": "Arsip Ujian",
+    "path": "/arsip"
+  },
+  {
+    "type": "single",
+    "name": "Pengaturan",
+    "path": "/settings"
+  }
+]
