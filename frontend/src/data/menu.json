@@ -20,10 +20,10 @@
     "type": "group",
     "label": "Rencana Ujian",
     "children": [
-      { "name": "Atur UH", "path": "/ujian/uh" },
-      { "name": "Atur UTS", "path": "/ujian/uts" },
-      { "name": "Atur UAS", "path": "/ujian/uas" },
-      { "name": "Atur Try Out", "path": "/ujian/tryout" }
+      { "name": "Atur UH", "path": "/exam/uh" },
+      { "name": "Atur UTS", "path": "/exam/uts" },
+      { "name": "Atur UAS", "path": "/exam/uas" },
+      { "name": "Atur Try Out", "path": "/exam/tryout" }
     ]
   },
   {
@@ -39,7 +39,7 @@
   {
     "type": "single",
     "name": "Arsip Ujian",
-    "path": "/arsip"
+    "path": "/arsip-ujian"
   },
   {
     "type": "single",
