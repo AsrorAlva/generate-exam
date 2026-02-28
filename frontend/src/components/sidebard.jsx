@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, use } from "react";
 import menuData from "../data/menu.json";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -18,13 +18,27 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   const location = useLocation();
   const [openGroup, setOpenGroup] = useState(null);
 
-  const toggleGroup = (label) => {
-    setOpenGroup(openGroup === label ? null : label);
-  };
-
+  // const isGroupOpen = openGroup === menuData.label;
   const isChildActive = (children) => {
     return children.some((child) => location.pathname === child.path);
   };
+
+  useEffect(() => {
+    const activeGroup = menuData.find((menu) => {
+      if (menu.type === "group") {
+        return menu.children.some((child) => child.path === location.pathname);
+      }
+      return false;
+    });
+
+    if (activeGroup) {
+      setOpenGroup(activeGroup.label);
+    }
+  }, [location.pathname]);
+
+  // const toggleGroup = (label) => {
+  //   setOpenGroup(openGroup === label ? null : label);
+  // };
 
   // ICON MAPPING
   const iconMap = {
@@ -91,15 +105,15 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             // =========================
             if (menu.type === "group") {
               const activeChild = isChildActive(menu.children);
-              const isGroupOpen = openGroup === menu.label || activeChild;
+              const isOpenNow = openGroup === menu.label;
 
               return (
                 <li key={index}>
                   <button
-                    onClick={() => toggleGroup(menu.label)}
+                    onClick={() => setOpenGroup(isOpenNow ? null : menu.label)}
                     className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                       activeChild
-                        ? "bg-blue-50 text-blue-600"
+                        ? "text-blue-600"
                         : "text-gray-500 hover:bg-blue-50 hover:text-blue-600"
                     }`}
                   >
@@ -112,18 +126,19 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                       <ChevronDown
                         size={16}
                         className={`transition-transform duration-300 ${
-                          isGroupOpen ? "rotate-180" : ""
+                          isOpenNow ? "rotate-180" : ""
                         }`}
                       />
                     )}
                   </button>
 
-                  {isOpen && isGroupOpen && (
+                  {isOpen && isOpenNow && (
                     <ul className="mt-2 ml-9 space-y-1">
                       {menu.children.map((child, i) => (
                         <li key={i}>
                           <NavLink
                             to={child.path}
+                            end
                             className={({ isActive }) =>
                               `block px-3 py-2 rounded-md text-sm transition-all duration-200 ${
                                 isActive
